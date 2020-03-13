@@ -2,6 +2,7 @@ import hashlib
 import requests
 
 import sys
+import json
 
 from uuid import uuid4
 
@@ -47,7 +48,7 @@ def valid_proof(last_hash, proof):
     guess = f'{last_hash}{proof}'.encode()
     guess_hash = hashlib.sha256(guess).hexdigest()
 
-    return guess_hash[6:] == proof[:6]
+    return str(guess_hash)[6:] == str(proof)[:6]
 
 if __name__ == '__main__':
     # What node are we interacting with?
