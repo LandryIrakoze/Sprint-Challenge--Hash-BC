@@ -17,7 +17,17 @@ def get_indices_of_item_weights(weights, length, limit):
         else:
             return (0, 1)
     else:
-        pass
+        table = {}
+        for weight in weights:
+            table[weight] = limit-weight
+        for key in table:
+            if table[key] in table:
+                if table[key] <= key:
+                    return (weights.index(key), weights.index(table[key]))
+                else:
+                    return (weights.index(table[key]), weights.index(key))
+    return None
+
 
 def print_answer(answer):
     if answer is not None:
